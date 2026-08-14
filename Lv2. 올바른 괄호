@@ -26,4 +26,4 @@ bool solution(const char* s) {
     }
     
     return answer;
-}
+} 

@@ -1,0 +1,25 @@
+class Solution {
+    public String solution(String s) {
+        boolean flag = true;
+        String result = "";
+        
+        for(int i = 0; i < s.length(); i++) {
+            if(flag == true && s.charAt(i) != ' ') {
+                result += Character.toUpperCase(s.charAt(i));
+                flag = false;
+                continue;
+            }
+            
+            if(s.charAt(i) == ' ') {
+                flag = true;
+                result += s.charAt(i);
+                continue;
+            }
+            
+            result += Character.toLowerCase(s.charAt(i));
+            flag = false;
+        }
+        
+        return result;
+    }
+}

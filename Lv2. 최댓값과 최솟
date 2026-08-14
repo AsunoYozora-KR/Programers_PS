@@ -19,5 +19,5 @@ class Solution {
         
         String result = min + " " + max;
         return result;
-    }
+    } 
 }

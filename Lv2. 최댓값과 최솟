@@ -1,0 +1,23 @@
+class Solution {
+    public String solution(String s) {
+        String[] parts = s.split(" ");
+        int max = Integer.parseInt(parts[0]);
+        int min = Integer.parseInt(parts[0]);
+        
+        for(int i = 0; i < parts.length; i++) {
+            int value = Integer.parseInt(parts[i]);
+            
+            if(value > max) {
+                max = value;
+                continue;
+            }
+            
+            if(value < min) {
+                min = value;
+            }
+        }
+        
+        String result = min + " " + max;
+        return result;
+    }
+}

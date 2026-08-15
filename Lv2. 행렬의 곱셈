@@ -1,0 +1,20 @@
+class Solution {
+    public int[][] solution(int[][] arr1, int[][] arr2) {
+        //결과 배열 만들기
+        int[][] answer = new int[arr1.length][arr2[0].length];
+        
+        for(int i = 0; i < arr1.length; i++) {
+            for(int j = 0; j < arr2[0].length; j++) {
+                int sum = 0;
+                for(int k = 0; k < arr1[0].length; k++) {
+                    sum += arr1[i][k] * arr2[k][j];
+                }
+                answer[i][j] = sum;
+            }
+        }
+        return answer;
+    }
+}
+//1. arr1의 열의 개수와 arr2의 행의 개수가 무조건 같아야 곱셈이 가능함
+//2. 행렬의 곱셈은 arr1의 행과 arr2의 열을 각각 원소별로 짝지어 계산 후 합해서 하나의 결과로 만드는 것이 핵심
+//3. 따라서 결과적으로 행은 arr1을, 열은 arr2를 따라가게 됨 

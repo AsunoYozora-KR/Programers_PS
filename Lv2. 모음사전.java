@@ -1,45 +1,26 @@
 1. 수학으로 해결
 
 class Solution {
+    private static final String VOWELS = "AEIOU";
+    private static final int MAX_LENGTH = 5;
+    
     public int solution(String word) {
-        //문자열로 변환
-        char[] splits = word.toCharArray();
-        int[] weights = returnWeights(splits);
-        int answer = 0;
-        
-        //각자리 문자 탐색 로직
-        for(int i = 0; i < weights.length; i++) {
-            answer++;
-            //가중치 탐색
-            for(int j = 1; j < weights[i]; j++) {
-                //위치별 계산
-                for(int k = 0; k < 5 - i; k++) {
-                    answer += (int)Math.pow(5, k);
-                }
-            }
+        int rank = 0;
+        for(int position = 0; position < word.length(); position++) {
+            int skippedLetters = VOWELS.indexOf(word.charAt(position));
+            int remainingSlots = MAX_LENGTH - position;
+            rank += skippedLetters * countWordsWithinLength(remainingSlots) + 1;
         }
-        return answer;
+        return rank;
     }
     
-    private int[] returnWeights(char[] splits) {
-        int[] weights = new int[splits.length];
-        for(int i = 0; i < weights.length; i++) {
-            if(splits[i] == 'A') {
-                weights[i] = 1;
-            }
-            if(splits[i] == 'E') {
-                weights[i] = 2;
-            }
-            if(splits[i] == 'I') {
-                weights[i] = 3;
-            }
-            if(splits[i] == 'O') {
-                weights[i] = 4;
-            }
-            if(splits[i] == 'U') {
-                weights[i] = 5;
-            }
+    private int countWordsWithinLength(int remainingSlots) {
+        int count = 0;
+        int wordsOfCurrentLength = 1;
+        for(int i = 0; i < remainingSlots; i++) {
+            count += wordsOfCurrentLength;
+            wordsOfCurrentLength *= 5;
         }
-        return weights;
+        return count;
     }
 }
